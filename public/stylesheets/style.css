@@ -1,0 +1,25 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00b7ff;
+}
+
+.btn-hero {
+  padding: 8px 10px;
+  text-decoration: none;
+  border: 2px solid #00b7ff;
+  border-radius: 4px;
+  display: inline-block;
+  margin: 20px 0;
+}
+
+.btn-hero:hover {
+  background-color: #dfdfdf;
+}
