@@ -14,13 +14,13 @@ let flash = require('connect-flash');
 
 // database setup
 let mongoose = require('mongoose');
-// let DB = require('./db');
+let DB = require('./db');
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const ticketsRouter = require("./routes/tickets");
 
-/* point mongoose to the DB URI
+//point mongoose to the DB URI
 mongoose.connect(DB.URI);
 
 let mongoDB = mongoose.connection;
@@ -28,7 +28,7 @@ mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
 mongoDB.once('open', ()=>{
   console.log('Connected to MongoDB...');
 })
-*/
+
 const app = express();
 
 // view engine setup
@@ -66,10 +66,10 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-/* create a User Model Instance
+// create a User Model Instance
 let userModel = require('./models/user');
 let User = userModel.User;
-*/
+
 // implement User Authentication Strategy
 passport.use(User.createStrategy());
 
