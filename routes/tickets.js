@@ -1,6 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
+const mongoose = require("mongoose");
+let ObjectId = require("mongoose").Types.ObjectId;
+let Ticket = require("../models/ticket");
+
 /* GET Tickets view. */
 router.get("/", async function (req, res, next) {
   res.render("tickets/tickets", { title: "Tickets" });
