@@ -12,10 +12,6 @@ let passportLocal = require("passport-local");
 let localStrategy = passportLocal.Strategy;
 let flash = require("connect-flash");
 
-// database setup
-let mongoose = require("mongoose");
-// let DB = require('./db');
-
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const ticketsRouter = require("./routes/tickets");
