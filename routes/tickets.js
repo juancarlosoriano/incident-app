@@ -8,10 +8,10 @@ let Ticket = require("../models/ticket");
 // Helper function for guard purpose
 function requireAuth(req, res, next) {
   // Check if user is logged in
-  if (!req.isAuthenticated()) {
-    return res.redirect("/login");
-  }
-  next();
+  // if (!req.isAuthenticated()) {
+  //   return res.redirect("/login");
+  // }
+  // next();
 }
 
 /* GET Tickets view. */

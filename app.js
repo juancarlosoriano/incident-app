@@ -16,21 +16,22 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const ticketsRouter = require("./routes/tickets");
 
-/* point mongoose to the DB URI
-mongoose.connect(DB.URI);
+/* point mongoose to the DB URI */
+// mongoose.connect(DB.URI);
 
 let mongoDB = mongoose.connection;
-mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
-mongoDB.once('open', ()=>{
-  console.log('Connected to MongoDB...');
-})
-*/
+mongoDB.on("error", console.error.bind(console, "Connection Error:"));
+mongoDB.once("open", () => {
+  console.log("Connected to MongoDB...");
+});
+
 const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+/*
 // Set up mongoose
 mongoose.connect("MONGO URI");
 
@@ -39,6 +40,7 @@ mongoDB.on("error", console, err.bind(console, "Connection error:"));
 mongoDB.once("open", () => {
   console.log("Connected to MongoDB...");
 });
+*/
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -66,6 +68,7 @@ app.use(
   })
 );
 
+/*
 // initialize flash
 app.use(flash());
 
@@ -76,7 +79,7 @@ app.use(passport.session());
 /* create a User Model Instance
 let userModel = require('./models/user');
 let User = userModel.User;
-*/
+
 // implement User Authentication Strategy
 passport.use(User.createStrategy());
 
@@ -94,5 +97,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+*/
 
 module.exports = app;
