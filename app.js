@@ -6,15 +6,14 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 
 // modules for authentication
-let session = require('express-session');
-let passport = require('passport');
-let passportLocal = require('passport-local');
+let session = require("express-session");
+let passport = require("passport");
+let passportLocal = require("passport-local");
 let localStrategy = passportLocal.Strategy;
-let flash = require('connect-flash');
-
+let flash = require("connect-flash");
 
 // database setup
-let mongoose = require('mongoose');
+let mongoose = require("mongoose");
 // let DB = require('./db');
 
 const indexRouter = require("./routes/index");
@@ -40,7 +39,6 @@ app.set("view engine", "ejs");
 mongoose.connect("MONGO URI");
 
 // Bind mongoose to connection
-let mongoDB = mongoose.connection;
 mongoDB.on("error", console, err.bind(console, "Connection error:"));
 mongoDB.once("open", () => {
   console.log("Connected to MongoDB...");
@@ -64,11 +62,13 @@ app.use(function (req, res, next) {
 });
 
 // set up express session
-app.use(session({
-  secret: "SomeSecret",
-  saveUninitialized: false,
-  resave: false
-}));
+app.use(
+  session({
+    secret: "SomeSecret",
+    saveUninitialized: false,
+    resave: false,
+  })
+);
 
 // initialize flash
 app.use(flash());
