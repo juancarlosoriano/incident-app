@@ -1,32 +1,46 @@
 const express = require("express");
 const router = express.Router();
+let mongoose = require('mongoose');
+let passport = require('passport');
+
+
+// Helper function for guard purpose
+function requireAuth(req, res, next)
+{
+    // Check if user is logged in
+    if(!req.isAuthenticated()) 
+    {
+        return res.redirect('/login');
+    }
+    next();
+}
 
 const mongoose = require("mongoose");
 let ObjectId = require("mongoose").Types.ObjectId;
 let Ticket = require("../models/ticket");
 
 /* GET Tickets view. */
-router.get("/", async function (req, res, next) {
+router.get("/", requireAuth, async function (req, res, next) {
   res.render("tickets/tickets", { title: "Tickets" });
 });
 
 /* GET Ticket view */
-router.get("/ticket/:id", async function (req, res, next) {
+router.get("/ticket/:id", requireAuth, async function (req, res, next) {
   res.render("tickets/edit-ticket", { ticket: req.params.id });
 });
 
 /* GET Create Ticket view */
-router.get("/add", async function (req, res, next) {
+router.get("/add", requireAuth, async function (req, res, next) {
   res.render("tickets/create-ticket", { title: "Add Ticket" });
 });
 
 /* POST Ticket */
-router.post("/", async function (req, res, next) {
+router.post("/", requireAuth, async function (req, res, next) {
   res.redirect("tickets/tickets");
 });
 
 /* PUT Ticket */
-router.put("/:id", async function (req, res, next) {
+router.put("/:id", requireAuth, async function (req, res, next) {
   const params = req.body.params;
 
   // Do something with the params
@@ -35,7 +49,7 @@ router.put("/:id", async function (req, res, next) {
 });
 
 /* DELETE Ticket */
-router.delete("/:id", async function (req, res, next) {
+router.delete("/:id", requireAuth, async function (req, res, next) {
   // Delete ticket
 
   res.redirect("tickets/tickets");
