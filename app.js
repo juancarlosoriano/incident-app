@@ -59,6 +59,7 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
+/*
 // set up express session
 app.use(
   session({
@@ -68,7 +69,6 @@ app.use(
   })
 );
 
-/*
 // initialize flash
 app.use(flash());
 
