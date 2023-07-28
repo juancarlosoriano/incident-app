@@ -3,37 +3,44 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const mongoose = require("mongoose");
 
 // modules for authentication
-let session = require('express-session');
-let passport = require('passport');
-let passportLocal = require('passport-local');
+let session = require("express-session");
+let passport = require("passport");
+let passportLocal = require("passport-local");
 let localStrategy = passportLocal.Strategy;
-let flash = require('connect-flash');
-
-
-// database setup
-let mongoose = require('mongoose');
-let DB = require('./db');
+let flash = require("connect-flash");
 
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const ticketsRouter = require("./routes/tickets");
 
-//point mongoose to the DB URI
-mongoose.connect(DB.URI);
+/* point mongoose to the DB URI */
+// mongoose.connect(DB.URI);
 
 let mongoDB = mongoose.connection;
-mongoDB.on('error', console.error.bind(console, 'Connection Error:'));
-mongoDB.once('open', ()=>{
-  console.log('Connected to MongoDB...');
-})
+mongoDB.on("error", console.error.bind(console, "Connection Error:"));
+mongoDB.once("open", () => {
+  console.log("Connected to MongoDB...");
+});
 
 const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+/*
+// Set up mongoose
+mongoose.connect("MONGO URI");
+
+// Bind mongoose to connection
+mongoDB.on("error", console, err.bind(console, "Connection error:"));
+mongoDB.once("open", () => {
+  console.log("Connected to MongoDB...");
+});
+*/
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -52,12 +59,15 @@ app.use(function (req, res, next) {
   next(createError(404));
 });
 
+/*
 // set up express session
-app.use(session({
-  secret: "SomeSecret",
-  saveUninitialized: false,
-  resave: false
-}));
+app.use(
+  session({
+    secret: "SomeSecret",
+    saveUninitialized: false,
+    resave: false,
+  })
+);
 
 // initialize flash
 app.use(flash());
@@ -87,5 +97,6 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+*/
 
 module.exports = app;

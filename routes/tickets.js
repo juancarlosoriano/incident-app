@@ -1,18 +1,17 @@
 const express = require("express");
 const router = express.Router();
-let mongoose = require('mongoose');
-let passport = require('passport');
-
+const mongoose = require("mongoose");
+const passport = require("passport");
+let ObjectId = require("mongoose").Types.ObjectId;
+let Ticket = require("../models/ticket");
 
 // Helper function for guard purpose
-function requireAuth(req, res, next)
-{
-    // Check if user is logged in
-    if(!req.isAuthenticated()) 
-    {
-        return res.redirect('/login');
-    }
-    next();
+function requireAuth(req, res, next) {
+  // Check if user is logged in
+  // if (!req.isAuthenticated()) {
+  //   return res.redirect("/login");
+  // }
+  next();
 }
 
 /* GET Tickets view. */
