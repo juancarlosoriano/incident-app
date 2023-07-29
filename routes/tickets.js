@@ -1,41 +1,47 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-const passport = require("passport");
-let ObjectId = require("mongoose").Types.ObjectId;
-let Ticket = require("../models/ticket");
+let mongoose = require("mongoose");
+let passport = require("passport");
 
-// Helper function for guard purpose
-function requireAuth(req, res, next) {
-  // Check if user is logged in
-  // if (!req.isAuthenticated()) {
-  //   return res.redirect("/login");
-  // }
-  next();
+let verification = require("../middleware/verify-user");
+
+/* Helper function for guard purpose
+function requireAuth(req, res, next)
+{
+    // Check if user is logged in
+    if(!verification.VerifyToken) 
+    {
+        return res.redirect('/login');
+    }
+    next();
 }
-
+*/
 /* GET Tickets view. */
-router.get("/", requireAuth, async function (req, res, next) {
+router.get("/", verification.VerifyToken, async function (req, res, next) {
   res.render("tickets/tickets", { title: "Tickets" });
 });
 
 /* GET Ticket view */
-router.get("/ticket/:id", requireAuth, async function (req, res, next) {
-  res.render("tickets/edit-ticket", { ticket: req.params.id });
-});
+router.get(
+  "/ticket/:id",
+  verification.VerifyToken,
+  async function (req, res, next) {
+    res.render("tickets/edit-ticket", { ticket: req.params.id });
+  }
+);
 
 /* GET Create Ticket view */
-router.get("/add", requireAuth, async function (req, res, next) {
+router.get("/add", verification.VerifyToken, async function (req, res, next) {
   res.render("tickets/create-ticket", { title: "Add Ticket" });
 });
 
 /* POST Ticket */
-router.post("/", requireAuth, async function (req, res, next) {
+router.post("/", verification.VerifyToken, async function (req, res, next) {
   res.redirect("tickets/tickets");
 });
 
 /* PUT Ticket */
-router.put("/:id", requireAuth, async function (req, res, next) {
+router.put("/:id", verification.VerifyToken, async function (req, res, next) {
   const params = req.body.params;
 
   // Do something with the params
@@ -44,10 +50,14 @@ router.put("/:id", requireAuth, async function (req, res, next) {
 });
 
 /* DELETE Ticket */
-router.delete("/:id", requireAuth, async function (req, res, next) {
-  // Delete ticket
+router.delete(
+  "/:id",
+  verification.VerifyToken,
+  async function (req, res, next) {
+    // Delete ticket
 
-  res.redirect("tickets/tickets");
-});
+    res.redirect("tickets/tickets");
+  }
+);
 
 module.exports = router;
