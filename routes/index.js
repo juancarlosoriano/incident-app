@@ -1,5 +1,10 @@
 const express = require("express");
 const router = express.Router();
+let flash = require('connect-flash');
+let LoginController = require('../controllers/login-controller');
+
+let mongoose = require('mongoose');
+let User = require('../models/user')
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
@@ -23,28 +28,7 @@ router.get("/login", function (req, res, next) {
 });
 
 // POST Route for processing login page
-router.post("/login", function(req, res, next) {
-
-  passport.authenticate('local',
-  (err, user, info) => {
-      // Server Error?
-      if(err){
-          return next(err);
-      }
-      // User Login Error?
-      if(!user){
-          req.flash('loginMessage', 'Authentication Error');
-          return res.redirect('login');
-      }
-      req.login(user, (err) => {
-          // Server Error?
-          if(err){
-              return next(err);
-          }
-          return res.redirect('/contact-list');
-      });
-  }) (req,res,next);
-});
+router.post("/login", LoginController.LoginUser );
 
 // GET Route for displaying register page
 router.get("/register", function (req, res, next) {
@@ -66,9 +50,16 @@ router.post("/register", function (req, res, next) {
   let newUser = new User({
       username: req.body.username,
       email: req.body.email,
-      name: req.body.name
+      name: req.body.name,
+      password: req.body.password
   });
 
+  console.log(newUser);
+  newUser.save();
+
+  console.log("Registration Successful");
+  res.redirect('/');
+/*
   User.register(newUser, req.body.password, (err) => {
       if(err)
       {
@@ -91,10 +82,10 @@ router.post("/register", function (req, res, next) {
           // If registration is successful
           console.log("Registration Successful");
           return passport.authenticate('local')(req, res, () => {
-              res.redirect('/contact-list');
+              res.redirect('/');
           });
       }
-  });
+  });*/
 });
 
 // GET to perform logout

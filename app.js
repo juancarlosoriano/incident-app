@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const dotenv = require("dotenv").config();
 
 // modules for authentication
 let session = require('express-session');
@@ -42,16 +43,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "node_modules")));
 
-// Set up routes
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/tickets", ticketsRouter);
-
-// catch 404 and forward to error handler
-app.use(function (req, res, next) {
-  next(createError(404));
-});
-
 // set up express session
 app.use(session({
   secret: "SomeSecret",
@@ -62,6 +53,18 @@ app.use(session({
 // initialize flash
 app.use(flash());
 
+// Set up routes
+app.use("/", indexRouter);
+app.use("/users", usersRouter);
+app.use("/tickets", ticketsRouter);
+
+// catch 404 and forward to error handler
+app.use(function (req, res, next) {
+  next(createError(404));
+});
+
+
+
 // initialize passport
 app.use(passport.initialize());
 app.use(passport.session());
@@ -71,11 +74,11 @@ let userModel = require('./models/user');
 let User = userModel.User;
 
 // implement User Authentication Strategy
-passport.use(User.createStrategy());
+//  passport.use(User.createStrategy());
 
 // serialize and deserialize the User Info
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 // error handler
 app.use(function (err, req, res, next) {
