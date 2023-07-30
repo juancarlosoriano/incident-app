@@ -10,3 +10,11 @@
     />
   </head>
   <body>
+
+    <nav class="navbar">
+      <% if(isLoggedIn) { %>
+        <a href="/login">Login</a>
+      <% } else { %>
+        <a href="/logout">Logout</a>
+      <% } %>
+    </nav>

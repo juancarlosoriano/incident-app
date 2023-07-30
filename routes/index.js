@@ -3,15 +3,17 @@ let session = require("express-session");
 const router = express.Router();
 let flash = require("connect-flash");
 let LoginController = require("../controllers/login-controller");
-let passport = require('passport');
+let passport = require("passport");
 
 let mongoose = require("mongoose");
 let userModel = require("../models/user");
 let User = userModel.User;
 
+let isLoggedIn = false;
+
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", { title: "Home" });
+  res.render("index", { title: "Home", isLoggedIn: isLoggedIn });
 });
 
 module.exports = router;
@@ -19,14 +21,15 @@ module.exports = router;
 /* GET Route for displaying the login page. */
 router.get("/login", function (req, res, next) {
   // check if the user is already logged in
-  if(!req.user){
-      res.render('auth/login', {
-          title: "Login",
-          messages: req.flash('loginMessage'),
-          displayName: req.User ? req.User.name : ''
-      })
+  if (!req.user) {
+    res.render("auth/login", {
+      title: "Login",
+      messages: req.flash("loginMessage"),
+      displayName: req.User ? req.User.name : "",
+      isLoggedIn: isLoggedIn,
+    });
   } else {
-      return res.redirect('/');
+    return res.redirect("/");
   }
 });
 
@@ -36,14 +39,14 @@ router.post("/login", LoginController.LoginUser);
 // GET Route for displaying register page
 router.get("/register", function (req, res, next) {
   // check if the user is not already logged in
-  if(!req.user){
-      res.render('auth/register', {
-          title: "Register",
-          messages: req.flash('registerMessage'),
-          displayName: req.User ? req.User.name : ''
-      });
+  if (!req.user) {
+    res.render("auth/register", {
+      title: "Register",
+      messages: req.flash("registerMessage"),
+      displayName: req.User ? req.User.name : "",
+    });
   } else {
-      return res.redirect('/');
+    return res.redirect("/");
   }
 });
 
@@ -63,7 +66,7 @@ router.post("/register", function (req, res, next) {
   console.log("Registration Successful");
   res.redirect("/");
 });
-  /*
+/*
   User.register(newUser, req.body.password, (err) => {
       if(err)
       {
