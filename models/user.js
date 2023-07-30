@@ -3,6 +3,7 @@ const bcrypt = require("bcryptjs");
 const validator = require("validator");
 const jwt = require("jsonwebtoken");
 const rateLimit = require("express-rate-limit");
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new mongoose.Schema(
   {
@@ -76,6 +77,6 @@ userSchema.statics.findByToken = async function (token) {
   }
 };
 
-const User = mongoose.model("User", userSchema);
+userSchema.plugin(passportLocalMongoose);
 
-module.exports = User;
+module.exports.User = mongoose.model("User", userSchema);

@@ -1,10 +1,13 @@
 const express = require("express");
+let session = require("express-session");
 const router = express.Router();
 let flash = require("connect-flash");
 let LoginController = require("../controllers/login-controller");
+let passport = require('passport');
 
 let mongoose = require("mongoose");
-let User = require("../models/user");
+let userModel = require("../models/user");
+let User = userModel.User;
 
 /* GET home page. */
 router.get("/", function (req, res, next) {

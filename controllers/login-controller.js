@@ -1,4 +1,5 @@
-let User = require("../models/user");
+let userModel = require("../models/user");
+let User = userModel.User;
 
 const LoginUser = async (req, res, next) => {
   try {

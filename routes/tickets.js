@@ -4,20 +4,17 @@ let mongoose = require("mongoose");
 let passport = require("passport");
 
 let verification = require("../middleware/verify-user");
-
-/* Helper function for guard purpose
+/*
+// Helper function for guard purpose
 function requireAuth(req, res, next)
 {
     // Check if user is logged in
-    if(!verification.VerifyToken) 
-    {
-        return res.redirect('/login');
-    }
+    verification.VerifyToken();
     next();
 }
 */
 /* GET Tickets view. */
-router.get("/", verification.VerifyToken, async function (req, res, next) {
+router.get("/", async function (req, res, next) {
   res.render("tickets/tickets", { title: "Tickets" });
 });
 
