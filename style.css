@@ -1,0 +1,200 @@
+
+/*  Author: Linh Yousef
+    ID: 301256144
+    Team: Cyber-Star
+    Date: 30/07/2023 */
+
+/* Main styles for the incident reporting web application */
+
+/* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+  }
+  
+  /* Header styles */
+  header {
+    background-color: #3f51b5;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 28px;
+  }
+  
+  /* Landing page styles */
+  .landing-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .landing-content {
+    text-align: center;
+  }
+  
+  .landing-title {
+    font-size: 36px;
+    color: #3f51b5;
+  }
+  
+  .landing-btn {
+    padding: 12px 24px;
+    background-color: #3f51b5;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .landing-btn:hover {
+    background-color: #344091;
+  }
+  
+  /* Registration and login styles */
+  .form-container {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-title {
+    font-size: 24px;
+    color: #3f51b5;
+    margin-bottom: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-label {
+    display: block;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-btn {
+    padding: 12px 24px;
+    background-color: #3f51b5;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-btn:hover {
+    background-color: #344091;
+  }
+  
+  /* Dashboard and incident reporting styles */
+  .dashboard-container {
+    padding: 20px;
+  }
+  
+  .dashboard-title {
+    font-size: 24px;
+    color: #3f51b5;
+    margin-bottom: 20px;
+  }
+  
+  .incident-form {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .form-field {
+    margin-bottom: 20px;
+  }
+  
+  .form-field label {
+    display: block;
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .form-field input,
+  .form-field textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-field textarea {
+    resize: vertical;
+  }
+  
+  .form-btn-primary {
+    padding: 12px 24px;
+    background-color: #3f51b5;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .form-btn-primary:hover {
+    background-color: #344091;
+  }
+  
+  /* Incident details styles */
+  .incident-details {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .incident-details h2 {
+    color: #3f51b5;
+  }
+  
+  .incident-details p {
+    color: #555;
+    margin-bottom: 10px;
+  }
+  
+  /* Colorful contributions */
+  .landing-container {
+    background-color: #f1c40f;
+  }
+  
+  .landing-btn {
+    background-color: #e67e22;
+  }
+  
+  .form-btn-primary {
+    background-color: #2ecc71;
+  }
+  
+  .header-container {
+    background-image: linear-gradient(to right, #3498db, #9b59b6);
+  }
+  
