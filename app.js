@@ -24,6 +24,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 
 // Set up routes
 app.use("/users", usersRouter);
@@ -42,7 +43,7 @@ app.use(function (err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error", {title: "Error"});
+  res.render("error", { title: "Error" });
 });
 
 module.exports = app;
