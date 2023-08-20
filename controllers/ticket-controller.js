@@ -13,7 +13,7 @@ const getAllTickets = async (req, res) => {
       .populate("createdBy", "-password -_id")
       .populate("assignedTo", "-password -_id");
 
-    res.status(200).json({ tickets: allTickets });
+    res.status(200).json(allTickets);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
