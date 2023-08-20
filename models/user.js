@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
-const validator = require("validator");
 const jwt = require("jsonwebtoken");
-const rateLimit = require("express-rate-limit");
-const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new mongoose.Schema(
   {
@@ -22,13 +19,10 @@ const userSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
       trim: true,
-      validate: [validator.isEmail, "Please provide a valid email address"],
     },
     password: {
       type: String,
       required: true,
-      minlength: [8, "Password must be at least 8 characters long"],
-      maxlength: [128, "Password must be less than 128 characters long"],
     },
   },
   {
@@ -76,7 +70,5 @@ userSchema.statics.findByToken = async function (token) {
     throw new Error(`Error verifying token: ${err.message}`);
   }
 };
-
-userSchema.plugin(passportLocalMongoose);
 
 module.exports.User = mongoose.model("User", userSchema);
