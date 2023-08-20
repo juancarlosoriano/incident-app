@@ -4,7 +4,7 @@ const router = express.Router();
 const userModel = require("../models/user");
 const User = userModel.User;
 
-const userController = require("../controllers/userController");
+const userController = require("../controllers/user-controller");
 
 // Sends token via json
 router.post("/login", userController.LoginUser);

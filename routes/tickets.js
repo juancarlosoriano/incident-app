@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const ticketController = require("../controllers/ticketController");
+const ticketController = require("../controllers/ticket-controller");
 
 // Returns all releveant items via json
 router.get("/", ticketController.getAllTickets);

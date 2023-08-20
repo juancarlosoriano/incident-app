@@ -11,16 +11,16 @@ let User = userModel.User;
 
 let isLoggedIn = false;
 
-function userLoggedIn (req, res, next) {
-    // Check if user is logged in
-    if(req.cookies.token){
-      isLoggedIn = true;
-      console.log("User Logged In");
-    } else {
-      isLoggedIn = false;
-      console.log("User NOT Logged In");
-    }
-    next();
+function userLoggedIn(req, res, next) {
+  // Check if user is logged in
+  if (req.cookies.token) {
+    isLoggedIn = true;
+    console.log("User Logged In");
+  } else {
+    isLoggedIn = false;
+    console.log("User NOT Logged In");
+  }
+  next();
 }
 
 /* GET home page. */
@@ -56,7 +56,7 @@ router.get("/register", userLoggedIn, function (req, res, next) {
       title: "Register",
       messages: req.flash("registerMessage"),
       displayName: req.user ? req.user.name : "",
-      isLoggedIn: isLoggedIn
+      isLoggedIn: isLoggedIn,
     });
   } else {
     return res.redirect("/");
@@ -109,15 +109,15 @@ router.post("/register", function (req, res, next) {
 });
 */
 // GET to perform logout
-router.get("/logout", function (req,res,next) {
-  req.logout((err) =>{
-      if(err){
-          // handle error here
-          console.log(err);
-          return next(err);
-      }
+router.get("/logout", function (req, res, next) {
+  req.logout((err) => {
+    if (err) {
+      // handle error here
+      console.log(err);
+      return next(err);
+    }
 
-      res.clearCookie('token');
-      return res.redirect('/');
+    res.clearCookie("token");
+    return res.redirect("/");
   });
 });
