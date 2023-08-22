@@ -8,10 +8,9 @@ const User = userModel.User;
 
 const getAllTickets = async (req, res) => {
   try {
-    let allTickets = await ticket
-      .find({})
-      .populate("createdBy", "-password -_id")
-      .populate("assignedTo", "-password -_id");
+    let allTickets = await ticket.find({});
+    // .populate("createdBy", "-password -_id")
+    // .populate("assignedTo", "-password -_id");
 
     res.status(200).json(allTickets);
   } catch (error) {
