@@ -47,7 +47,7 @@ const LogoutUser = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    let allUsers = await User.find({});
+    let allUsers = await User.find({}, "_id name");
 
     res.status(200).json({ users: allUsers });
   } catch (error) {
