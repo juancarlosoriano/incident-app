@@ -125,7 +125,7 @@ const updateTicket = async (req, res) => {
       }
     );
 
-    res.status(200).json({ message: "Ticekt Updated" });
+    res.status(200).json({ message: "Ticket Updated" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
