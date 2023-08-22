@@ -16,6 +16,6 @@ router.get("/logout", userController.LogoutUser);
 router.get("/", userController.getAllUsers);
 
 // Register new user
-router.get("/register", userController.RegisterUser);
+router.post("/register", userController.RegisterUser);
 
 module.exports = router;
