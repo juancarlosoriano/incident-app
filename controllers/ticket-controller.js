@@ -105,25 +105,23 @@ const displayTicket = async (req, res) => {
 
 const updateTicket = async (req, res) => {
   let id = req.params.id;
-  let ticketToUpdate = new ticket({
+  // let ticketToUpdate = new ticket({
+  //   title: req.body.title,
+  //   description: req.body.description,
+  //   createdOn: req.body.createdOn,
+  //   createdBy: req.body.creatorId,
+  //   assignedTo: req.body.assignedId,
+  // });
+  let params = {
     title: req.body.title,
     description: req.body.description,
-    createdOn: req.body.createdOn,
-    createdBy: req.body.creatorId,
-    assignedTo: req.body.assignedId,
-  });
+  };
 
   try {
     await ticket.updateOne(
       { _id: id },
       {
-        $set: {
-          title: ticketToUpdate.title,
-          description: ticketToUpdate.description,
-          createdOn: ticketToUpdate.createdOn,
-          createdBy: ticketToUpdate.createdBy,
-          assignedTo: ticketToUpdate.assignedTo,
-        },
+        $set: params,
       }
     );
 
