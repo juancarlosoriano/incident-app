@@ -12,6 +12,10 @@ router.post("/login", userController.LoginUser);
 // Could probably be processed in app (clear cookie)
 router.get("/logout", userController.LogoutUser);
 
+// Get all users
 router.get("/", userController.getAllUsers);
+
+// Register new user
+router.get("/register", userController.RegisterUser);
 
 module.exports = router;

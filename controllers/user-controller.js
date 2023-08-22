@@ -56,4 +56,16 @@ const getAllUsers = async (req, res) => {
   }
 };
 
+const RegisterUser = async (req, res) => {
+  try {
+    let newUser = new User(req.body);
+    await newUser.save();
+
+    res.status(200).json({ message: "User is registered!" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
+
 module.exports = { LoginUser, LogoutUser, getAllUsers };
