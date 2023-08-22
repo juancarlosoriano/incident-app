@@ -8,7 +8,11 @@ const User = userModel.User;
 
 const getAllTickets = async (req, res) => {
   try {
-    let allTickets = await ticket.find({});
+    let allTickets = await ticket
+      .find({})
+      .select(
+        "_id title description status createdOn closeOn createdBy assignedTo comments"
+      );
     // .populate("createdBy", "-password -_id")
     // .populate("assignedTo", "-password -_id");
 
