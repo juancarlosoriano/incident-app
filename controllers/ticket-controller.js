@@ -18,20 +18,6 @@ const getAllTickets = async (req, res) => {
   }
 };
 
-const getAllComments = async (req, res) => {
-  try {
-    let allComments = await comment
-      .find({}, { _id: 0 })
-      .populate("author", "-password -_id")
-      .populate("TicketRef", "-_id -createdBy -assignedTo");
-
-    res.status(200).json({ comments: allComments });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
-  }
-};
-
 const deleteTicket = async (req, res) => {
   let id = req.params.id;
 
@@ -66,30 +52,8 @@ const createTicket = async (req, res) => {
   }
 };
 
-const displayTicket = async (req, res) => {
-  let id = req.params.id;
-
-  try {
-    let returnTicket = await Ticket.findById(id, { _id: 0 })
-      .populate("createdBy", "-password -_id -createdAt -updatedAt")
-      .populate("assignedTo", "-password -_id -createdAt -updatedAt");
-
-    res.status(200).json({ ticket: returnTicket });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
-  }
-};
-
 const updateTicket = async (req, res) => {
   let id = req.params.id;
-  // let ticketToUpdate = new ticket({
-  //   title: req.body.title,
-  //   description: req.body.description,
-  //   createdOn: req.body.createdOn,
-  //   createdBy: req.body.creatorId,
-  //   assignedTo: req.body.assignedId,
-  // });
   let params = {
     title: req.body.title,
     description: req.body.description,
@@ -104,49 +68,6 @@ const updateTicket = async (req, res) => {
     );
 
     res.status(200).json({ message: "Ticket Updated" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
-  }
-};
-
-const displayComment = async (req, res) => {
-  let id = req.params.ticket_id;
-
-  try {
-    let commentToDisplay = await comment
-      .find({ TicketRef: id }, { _id: 0 })
-      .populate("TicketRef", "-_id -createdBy -assignedTo");
-
-    res.status(200).json({ comment: commentToDisplay });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
-  }
-};
-
-const updateComment = async (req, res) => {
-  let id = req.params.comment_id;
-
-  let commentToUpdate = new comment({
-    description: req.body.description,
-    isInternal: req.body.isInternal,
-    userStories: req.body.userStories,
-  });
-
-  try {
-    await comment.updateOne(
-      { _id: id },
-      {
-        $set: {
-          description: commentToUpdate.description,
-          isInternal: commentToUpdate.isInternal,
-          userStories: commentToUpdate.userStories,
-        },
-      }
-    );
-
-    res.status(200).json({ message: "Comment Updated" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });
@@ -201,30 +122,12 @@ const createComment = async (req, res) => {
   }
 };
 
-const deleteComment = async (req, res) => {
-  let id = req.params.comment_id;
-
-  try {
-    await comment.findByIdAndRemove(id);
-
-    res.status(200).json({ message: "Comment Removed" });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server error" });
-  }
-};
-
 module.exports = {
   getAllTickets,
   deleteTicket,
   createTicket,
-  displayTicket,
   updateTicket,
   openTicket,
   resolveTicket,
-  displayComment,
-  updateComment,
-  getAllComments,
   createComment,
-  deleteComment,
 };
