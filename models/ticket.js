@@ -1,6 +1,8 @@
 let mongoose = require("mongoose");
 let userModel = require("./user");
 let User = userModel.User;
+let commentModel = require("./comment");
+let Comment = commentModel.Comment;
 
 // Create a ticket model class
 let ticketModel = new mongoose.Schema(
@@ -38,10 +40,13 @@ let ticketModel = new mongoose.Schema(
       required: false,
       default: null,
     },
-    comments: {
-      type: [],
-      required: false,
-    },
+    comments: [
+      {
+        commentText: String,
+        createdOn: Date,
+        createdBy: mongoose.Schema.Types.ObjectId,
+      },
+    ],
   },
   {
     collection: "Ticket",

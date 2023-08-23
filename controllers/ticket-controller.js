@@ -11,9 +11,6 @@ const getAllTickets = async (req, res) => {
     let allTickets = await Ticket.find({}).select(
       "_id title description status createdOn closeOn createdBy assignedTo comments"
     );
-    // .populate("createdBy", "-password -_id")
-    // .populate("assignedTo", "-password -_id");
-
     res.status(200).json(allTickets);
   } catch (error) {
     console.error(error);
@@ -56,6 +53,7 @@ const createTicket = async (req, res) => {
     createdOn: Date.now(),
     createdBy: req.body.createdBy,
     assignedTo: req.body.assignedTo,
+    comments: [],
   });
 
   try {
@@ -182,28 +180,21 @@ const resolveTicket = async (req, res) => {
 };
 
 const createComment = async (req, res) => {
-  let id = req.params.ticket_id;
+  let ticket_id = req.params.id;
 
-  let commentToCreate = new comment({
-    TicketRef: id,
-    author: req.body.authorId,
-    createdOn: req.body.createdOn,
-    description: req.body.description,
-    isInternal: req.body.isInternal,
-    userStories: req.body.userStories,
-  });
+  let comment = {
+    commentText: req.body.commentText,
+    createdBy: req.body.createdBy,
+    createdOn: Date.now(),
+  };
 
-  let commentId;
   try {
-    await comment.create(commentToCreate).then((result) => {
-      commentId = result._id;
-    });
-
-    await Ticket.updateOne({ _id: id }, { $addToSet: { comments: commentId } });
-
-    res.status(200).json({ message: "Comment Created" });
-  } catch (error) {
-    console.error(error);
+    Ticket.findOneAndUpdate(
+      { _id: ticket_id },
+      { $addToSet: { comment: comment } }
+    );
+  } catch (err) {
+    console.error(err);
     res.status(500).json({ message: "Server error" });
   }
 };
