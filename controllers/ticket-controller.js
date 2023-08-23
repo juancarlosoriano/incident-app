@@ -58,6 +58,15 @@ const createTicket = async (req, res) => {
     assignedTo: req.body.assignedTo,
   });
 
+  try {
+    await newTicket.save();
+
+    res.status(200).json({ message: "Ticket Created!" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
+  }
+
   // let ticketComment = new comment({
   //   author: req.body.createdBy,
   //   text: req.body.text,
