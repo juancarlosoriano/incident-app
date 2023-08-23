@@ -7,12 +7,12 @@ let ticket = ticketModel.Ticket;
 let commentModel = new mongoose.Schema(
   {
     TicketRef: {
-      type: [mongoose.Schema.Types.ObjectId],
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Ticket",
       required: true,
     },
     createdBy: {
-      type: [mongoose.Schema.Types.ObjectId],
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
