@@ -191,7 +191,7 @@ const createComment = async (req, res) => {
   try {
     await Ticket.findOneAndUpdate(
       { _id: ticket_id },
-      { $addToSet: { comment: comment } }
+      { $addToSet: { comments: comment } }
     );
 
     res.status(200).json({ message: "Comment added!" });
