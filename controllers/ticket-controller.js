@@ -53,7 +53,7 @@ const createTicket = async (req, res) => {
     title: req.body.title,
     status: "Open",
     description: req.body.description,
-    createdOn: Date.now,
+    createdOn: Date.now(),
     createdBy: req.body.createdBy,
     assignedTo: req.body.assignedTo,
   });
