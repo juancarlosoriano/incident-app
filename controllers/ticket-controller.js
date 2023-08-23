@@ -56,13 +56,13 @@ const createTicket = async (req, res) => {
     status: req.body.status ? req.body.status : "Open",
     description: req.body.description,
     createdOn: req.body.createdOn,
-    createdBy: req.body.creatorId,
-    assignedTo: req.body.assignedId,
+    createdBy: req.body.creatorBy,
+    assignedTo: req.body.assignedTo,
   });
 
   let ticketComment = new comment({
-    author: req.body.creatorId,
-    description: req.body.commentDescription,
+    author: req.body.createdBy,
+    description: req.body.text,
     isInternal: req.body.isInternal,
   });
 

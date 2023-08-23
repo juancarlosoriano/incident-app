@@ -11,7 +11,7 @@ let commentModel = new mongoose.Schema(
       ref: "Ticket",
       required: true,
     },
-    author: {
+    createdBy: {
       type: [mongoose.Schema.Types.ObjectId],
       ref: "User",
       required: true,
@@ -20,7 +20,7 @@ let commentModel = new mongoose.Schema(
       type: Date,
       default: Date.now,
     },
-    description: {
+    text: {
       type: String,
     },
     isInternal: {
