@@ -7,7 +7,7 @@ router.get("/", ticketController.getAllTickets);
 router.get("/comments", ticketController.getAllComments);
 
 // Deletes tickets with :id, returns message
-router.get("/delete/:id", ticketController.deleteTicket);
+router.delete("/delete/:id", ticketController.deleteTicket);
 
 // Creates ticket and one comment, returns message
 router.post("/add", ticketController.createTicket);
