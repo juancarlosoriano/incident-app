@@ -190,7 +190,7 @@ const createComment = async (req, res) => {
 
   try {
     let ticket = await Ticket.findOne({ _id: ticket_id });
-    ticket.comments.push(comment);
+    await ticket.comments.push(comment);
     await ticket.save();
 
     res.status(200).json({ message: "Comment added!" });
