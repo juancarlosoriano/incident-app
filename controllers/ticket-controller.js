@@ -189,7 +189,7 @@ const createComment = async (req, res) => {
   };
 
   try {
-    let ticket = await Ticket.findOne({ _id: ticket_id });
+    let ticket = await Ticket.findOne({ _id: ticket_id }).exec();
     await ticket.comments.push(comment);
     await ticket.save();
 
