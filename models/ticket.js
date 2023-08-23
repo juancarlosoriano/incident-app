@@ -28,12 +28,12 @@ let ticketModel = new mongoose.Schema(
       default: null,
     },
     createdBy: {
-      type: [mongoose.Schema.Types.ObjectId],
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: true,
     },
     assignedTo: {
-      type: [mongoose.Schema.Types.ObjectId],
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       required: false,
       default: null,
