@@ -9,9 +9,6 @@ const userController = require("../controllers/user-controller");
 // Sends token via json
 router.post("/login", userController.LoginUser);
 
-// Could probably be processed in app (clear cookie)
-router.get("/logout", userController.LogoutUser);
-
 // Get all users
 router.get("/", userController.getAllUsers);
 
