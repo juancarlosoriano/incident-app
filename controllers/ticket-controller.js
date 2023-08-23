@@ -53,10 +53,10 @@ const deleteTicket = async (req, res) => {
 const createTicket = async (req, res) => {
   let ticketToCreate = new ticket({
     title: req.body.title,
-    status: req.body.status ? req.body.status : "Open",
+    status: "Open",
     description: req.body.description,
-    createdOn: req.body.createdOn,
-    createdBy: req.body.creatorBy,
+    createdOn: Date.now,
+    createdBy: req.body.createdBy,
     assignedTo: req.body.assignedTo,
   });
 
