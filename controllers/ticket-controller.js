@@ -189,10 +189,12 @@ const createComment = async (req, res) => {
   };
 
   try {
-    Ticket.findOneAndUpdate(
+    await Ticket.findOneAndUpdate(
       { _id: ticket_id },
       { $addToSet: { comment: comment } }
     );
+
+    res.status(200).json({ message: "Comment added!" });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Server error" });
