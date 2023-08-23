@@ -49,7 +49,7 @@ const getAllUsers = async (req, res) => {
   try {
     let allUsers = await User.find({}, "_id name");
 
-    res.status(200).json({ users: allUsers });
+    res.status(200).json(allUsers);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });

@@ -66,35 +66,6 @@ const createTicket = async (req, res) => {
     console.error(err);
     res.status(500).json({ message: "Server error" });
   }
-
-  // let ticketComment = new comment({
-  //   author: req.body.createdBy,
-  //   text: req.body.text,
-  //   isInternal: req.body.isInternal,
-  // });
-
-  //let ticketRef;
-
-  // try {
-  // await ticket.create(ticketToCreate).then((result) => {
-  //   ticketRef = result._id;
-  // });
-
-  // ticketComment.TicketRef = ticketRef;
-  // await comment.create(ticketComment).then((result) => {
-  //   commentId = result._id;
-  // });
-
-  // await ticket.updateOne(
-  //   { _id: ticketRef },
-  //   { $addToSet: { comments: commentId } }
-  // );
-
-  //   res.status(200).json({ message: "Ticket created" });
-  // } catch (error) {
-  //   console.error(error);
-  //   res.status(500).json({ message: "Server error" });
-  // }
 };
 
 const displayTicket = async (req, res) => {
