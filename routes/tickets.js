@@ -28,7 +28,7 @@ router.get("/add_comment/:ticket_id", ticketController.displayComment);
 router.post("/add_comment/:comment_id", ticketController.updateComment);
 
 // Creates a comment related to ticket with :id
-router.post("/create_comment/:ticket_id", ticketController.createComment);
+router.put("/create_comment/:ticket_id", ticketController.createComment);
 
 // Deletes a comment with :id
 router.get("/delete_comment/:comment_id", ticketController.deleteComment);
