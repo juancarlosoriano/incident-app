@@ -101,7 +101,7 @@ const resolveTicket = async (req, res) => {
 };
 
 const createComment = async (req, res) => {
-  let ticket_id = req.params.id;
+  let ticket_id = req.params.ticket_id;
 
   let comment = {
     commentText: req.body.commentText,
